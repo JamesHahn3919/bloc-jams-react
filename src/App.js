@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 import "./App.css";
 import Landing from "./components/Landing";
 import Library from "./components/Library";
-import Album from "./components/Album";
+import Albums from "./components/Albums";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route path="/library" component={Library} />
         <Route path="/albums" component={Albums} />
-    </main>
+      </main>
     </div>
   );
 }
