@@ -30,6 +30,7 @@ class Album extends Component {
   }
 
   setSong(song) {
+    console.log("song: ", song);
     this.audioElement.src = song.audioSrc;
     this.setState({ currentSong: song });
   }
@@ -68,14 +69,14 @@ class Album extends Component {
             <col id="song-duration-column" />
           </colgroup>
           <tbody>
-            {this.state.album.songs.map((songs, index) => (
+            {this.state.album.songs.map((song, index) => (
               <tr
                 className="song"
                 key={index}
-                onClick={() => this.handleSongClick()}
+                onClick={() => this.handleSongClick(song)}
               >
                 {" "}
-                {songs.number}
+                {song.number}
                 {index}{" "}
               </tr>
             ))}
