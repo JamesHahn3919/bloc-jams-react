@@ -18,8 +18,8 @@ function App() {
       <main>
         <Route exact path="/" component={Landing} />
         <Route path="/library" component={Library} />
-        <Route path="/album:slug" component={Album} />
-      </main>
+        <Route path="/albums" component={Albums} />
+    </main>
     </div>
   );
 }
