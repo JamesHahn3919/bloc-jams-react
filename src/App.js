@@ -18,6 +18,7 @@ function App() {
       <main>
         <Route exact path="/" component={Landing} />
         <Route path="/library" component={Library} />
+        <Route path="/albums" component={Albums} />
       </main>
     </div>
   );
