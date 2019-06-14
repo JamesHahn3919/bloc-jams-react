@@ -77,8 +77,6 @@ class Album extends Component {
                 onMouseEnter={() => this.setState({ hoverSong: index })}
                 onMouseLeave={() => this.setState({ hoverSong: null })}
               >
-                <td>{index + 1}</td>
-                <td>{song.title}</td>
                 <td>
                   {this.state.hoverSong == index ? (
                     this.state.currentSong == song ? (
@@ -87,9 +85,11 @@ class Album extends Component {
                       <span className="icon ion-md-play" />
                     )
                   ) : (
-                    song.duration
+                    index + 1
                   )}
                 </td>
+                <td>{song.title}</td>
+                <td>{song.duration}</td>
               </tr>
             ))}
           </tbody>
