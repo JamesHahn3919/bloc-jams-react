@@ -74,10 +74,22 @@ class Album extends Component {
                 className="song"
                 key={index}
                 onClick={() => this.handleSongClick(song)}
+                onMouseEnter={() => this.setState({ hoverSong: index })}
+                onMouseLeave={() => this.setState({ hoverSong: null })}
               >
-                {" "}
-                {song.number}
-                {index}{" "}
+                <td>{index + 1}</td>
+                <td>{song.title}</td>
+                <td>
+                  {this.state.hoverSong == index ? (
+                    this.state.currentSong == song ? (
+                      <span className="icon ion-md-pause" />
+                    ) : (
+                      <span className="icon ion-md-play" />
+                    )
+                  ) : (
+                    song.duration
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
