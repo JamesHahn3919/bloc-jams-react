@@ -20,7 +20,7 @@ class PlayerBar extends Component {
         </section>
         <section id="time-control">
           <div className="current-time">
-            {this.props.currentTime.formatTime()}
+            {this.props.currentTime.formatTime}
           </div>
           <input
             type="range"
