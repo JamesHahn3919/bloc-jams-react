@@ -122,17 +122,19 @@ class Album extends Component {
   }
 
   formatTime() {
-    var minutes = Math.floor(this.audioElement.currentTime % 60);
-    var mins = minutes >= 10 ? minutes : "0" + minutes;
-    var seconds = Math.floor(this.audioElement.currentTime % 60);
-    var secs = seconds >= 10 ? seconds : "0" + seconds;
-    return mins + ":" + secs;
+    if (this.audioElement) {
+      var minutes = Math.floor(this.audioElement.currentTime % 60);
+      var mins = minutes >= 10 ? minutes : "0" + minutes;
+      var seconds = Math.floor(this.audioElement.currentTime % 60);
+      var secs = seconds >= 10 ? seconds : "0" + seconds;
+      return mins + ":" + secs;
+    }
   }
 
   render() {
     return (
       <section className="album">
-        <section id="ablum-info">
+        <section id="album-info">
           <img
             id="album-cover-art"
             src={this.state.album.albumCover}
@@ -176,19 +178,21 @@ class Album extends Component {
             ))}
           </tbody>
         </table>
-        <PlayerBar
-          isPlaying={this.state.isPlaying}
-          currentSong={this.state.currentSong}
-          currentTime={this.audioElement.currentTime}
-          currentVolume={this.audioElement.currentVolume}
-          duration={this.audioElement.duration}
-          handleSongClick={() => this.handleSongClick(this.state.currentSong)}
-          handlePrevClick={() => this.handlePrevClick()}
-          handleNextClick={() => this.handleNextClick()}
-          handleTimeChange={e => this.handleTimeChange(e)}
-          handleVolumeChange={e => this.handleVolumeChange(e)}
-          formatTime={() => this.formatTime()}
-        />
+        {this.audioElement && (
+          <PlayerBar
+            isPlaying={this.state.isPlaying}
+            currentSong={this.state.currentSong}
+            currentTime={this.audioElement.currentTime}
+            currentVolume={this.audioElement.currentVolume}
+            duration={this.audioElement.duration}
+            handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+            handlePrevClick={() => this.handlePrevClick()}
+            handleNextClick={() => this.handleNextClick()}
+            handleTimeChange={e => this.handleTimeChange(e)}
+            handleVolumeChange={e => this.handleVolumeChange(e)}
+            formatTime={this.formatTime}
+          />
+        )}
       </section>
     );
   }

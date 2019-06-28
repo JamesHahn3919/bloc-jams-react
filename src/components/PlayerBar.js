@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class PlayerBar extends Component {
   render() {
+    console.log(this.props.duration);
     return (
       <section className="player-bar">
         {" "}
@@ -19,9 +20,7 @@ class PlayerBar extends Component {
           </button>
         </section>
         <section id="time-control">
-          <div className="current-time">
-            {this.props.currentTime.formatTime}
-          </div>
+          <div className="current-time">{this.props.formatTime()}</div>
           <input
             type="range"
             className="seek-bar"
