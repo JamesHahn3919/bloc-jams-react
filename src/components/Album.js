@@ -27,9 +27,11 @@ class Album extends Component {
     this.eventListeners = {
       timeupdate: e => {
         this.setState({ currentTime: this.audioElement.currentTime });
+        console.log(this.audioElement.currentTime);
       },
       durationchange: e => {
         this.setState({ duration: this.audioElement.duration });
+        console.log(this.audioElement.duration);
       },
       volumeupdate: e => {
         this.setState({ currentVolume: this.audioElement.currentVolume });
@@ -121,13 +123,13 @@ class Album extends Component {
     this.setState({ currentVolume: newVolume });
   }
 
-  formatTime() {
-    if (this.audioElement) {
-      var minutes = Math.floor(this.audioElement.currentTime % 60);
-      var mins = minutes >= 10 ? minutes : "0" + minutes;
-      var seconds = Math.floor(this.audioElement.currentTime % 60);
-      var secs = seconds >= 10 ? seconds : "0" + seconds;
-      return mins + ":" + secs;
+  formatTime(currentTime) {
+    if (currentTime) {
+      var minutes = Math.floor((currentTime / 60) % 60);
+      minutes = minutes >= 10 ? minutes : "0" + minutes;
+      var seconds = Math.floor(currentTime % 60);
+      seconds = seconds >= 10 ? seconds : "0" + seconds;
+      return minutes + ":" + seconds;
     }
   }
 
@@ -182,7 +184,7 @@ class Album extends Component {
           <PlayerBar
             isPlaying={this.state.isPlaying}
             currentSong={this.state.currentSong}
-            currentTime={this.audioElement.currentTime}
+            currentTime={this.formatTime(this.state.currentTime)}
             currentVolume={this.audioElement.currentVolume}
             duration={this.audioElement.duration}
             handleSongClick={() => this.handleSongClick(this.state.currentSong)}
@@ -190,7 +192,6 @@ class Album extends Component {
             handleNextClick={() => this.handleNextClick()}
             handleTimeChange={e => this.handleTimeChange(e)}
             handleVolumeChange={e => this.handleVolumeChange(e)}
-            formatTime={this.formatTime}
           />
         )}
       </section>
