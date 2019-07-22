@@ -37,9 +37,9 @@ class PlayerBar extends Component {
           <input
             type="range"
             className="seek-bar"
-            value={this.props.currentVolume || 0}
-            max="1"
+            value={this.props.currentVolume}
             min="0"
+            max="1"
             step="0.01"
             onChange={this.props.handleVolumeChange}
           />

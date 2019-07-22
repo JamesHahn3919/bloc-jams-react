@@ -15,7 +15,7 @@ class Album extends Component {
       currentSong: album.songs[0],
       currentTime: 0,
       duration: album.songs[0].duration,
-      currentVolume: 0,
+      currentVolume: 0.8,
       isPlaying: false
     };
 
@@ -118,9 +118,8 @@ class Album extends Component {
   }
 
   handleVolumeChange(e) {
-    const newVolume = this.audioElement.volume * e.target.value;
-    this.audioElement.currentVolume = newVolume;
-    this.setState({ currentVolume: newVolume });
+    this.audioElement.volume = e.target.value;
+    this.setState({ currentVolume: e.target.value });
   }
 
   formatTime(currentTime) {
@@ -128,6 +127,16 @@ class Album extends Component {
       var minutes = Math.floor((currentTime / 60) % 60);
       minutes = minutes >= 10 ? minutes : "0" + minutes;
       var seconds = Math.floor(currentTime % 60);
+      seconds = seconds >= 10 ? seconds : "0" + seconds;
+      return minutes + ":" + seconds;
+    }
+  }
+
+  formatDuration(duration) {
+    if (duration) {
+      var minutes = Math.floor((duration / 60) % 60);
+      minutes = minutes >= 10 ? minutes : "0" + minutes;
+      var seconds = Math.floor(duration % 60);
       seconds = seconds >= 10 ? seconds : "0" + seconds;
       return minutes + ":" + seconds;
     }
@@ -175,7 +184,7 @@ class Album extends Component {
                   )}
                 </td>
                 <td>{song.title}</td>
-                <td>{song.duration}</td>
+                <td>{this.formatDuration(song.duration)}</td>
               </tr>
             ))}
           </tbody>
@@ -186,7 +195,7 @@ class Album extends Component {
             currentSong={this.state.currentSong}
             currentTime={this.formatTime(this.state.currentTime)}
             currentVolume={this.audioElement.currentVolume}
-            duration={this.audioElement.duration}
+            duration={this.formatDuration(this.audioElement.duration)}
             handleSongClick={() => this.handleSongClick(this.state.currentSong)}
             handlePrevClick={() => this.handlePrevClick()}
             handleNextClick={() => this.handleNextClick()}
