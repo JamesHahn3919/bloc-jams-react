@@ -2,6 +2,7 @@ import React from "react";
 
 const Landing = () => (
   <section className="landing">
+    <img className="logo" src={require("./../logo.png")} />
     <h1 className="hero-title">Turn the music up!</h1>
 
     <section className="selling-points">

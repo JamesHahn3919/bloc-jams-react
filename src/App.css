@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+body {
+  background-image: url("background.png");
+}
+
+.logo {
+  height: 240px;
+  width: 420px;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -21,6 +29,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+#song-list {
+  align-items: center;
 }
 
 @keyframes App-logo-spin {
